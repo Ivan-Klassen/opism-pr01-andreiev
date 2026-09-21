@@ -29,7 +29,49 @@ curl -v https://ВАШ_ДОМЕН
 **Вивід:**
 
 ```
-(вставити повний вивід, включно з рядками *, > та <)
+* Host perl.org:443 was resolved.
+* IPv6: (none)
+* IPv4: 151.101.65.55, 151.101.1.55, 151.101.193.55, 151.101.129.55
+*   Trying 151.101.65.55:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* ALPN: server accepted http/1.1
+* Connected to perl.org (151.101.65.55) port 443
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: perl.org
+> User-Agent: curl/8.13.0
+> Accept: */*
+>
+* Request completely sent off
+< HTTP/1.1 301 Moved Permanently
+< Connection: keep-alive
+< Content-Length: 162
+< Content-Type: text/html
+< Location: https://www.perl.org/
+< Server: nginx
+< X-Cluster-Zone: dala
+< Via: 1.1 varnish, 1.1 varnish
+< Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+< Accept-Ranges: bytes
+< Age: 2642
+< Date: Mon, 21 Sep 2026 21:22:31 GMT
+< X-Served-By: cache-dfw-kdfw8210144-DFW, cache-muc13969-MUC
+< X-Cache: HIT, HIT
+< X-Cache-Hits: 13, 0
+< X-Timer: S1790025751.306929,VS0,VE183
+< X-Backend: dala
+< X-Backend-Front: ssl_shield_dallas_tx_us
+< alt-svc: h3=":443";ma=86400,h3-29=":443";ma=86400,h3-27=":443";ma=86400
+<
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+* Connection #0 to host perl.org left intact
 ```
 
 ---
@@ -45,7 +87,162 @@ curl -v http://neverssl.com
 **Вивід:**
 
 ```
-(вставити повний вивід)
+* Host neverssl.com:80 was resolved.
+* IPv6: (none)
+* IPv4: 34.223.124.45
+*   Trying 34.223.124.45:80...
+* Connected to neverssl.com (34.223.124.45) port 80
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: neverssl.com
+> User-Agent: curl/8.13.0
+> Accept: */*
+>
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Date: Mon, 21 Sep 2026 21:38:36 GMT
+< Server: Apache/2.4.68 ()
+< Upgrade: h2,h2c
+< Connection: Upgrade
+< Last-Modified: Wed, 29 Jun 2022 00:23:33 GMT
+< ETag: "f79-5e28b29d38e93"
+< Accept-Ranges: bytes
+< Content-Length: 3961
+< Vary: Accept-Encoding
+< Content-Type: text/html; charset=UTF-8
+<
+<html>
+        <head>
+                <title>NeverSSL - Connecting ... </title>
+                <style>
+                body {
+                        font-family: Montserrat, helvetica, arial, sans-serif;
+                        font-size: 16x;
+                        color: #444444;
+                        margin: 0;
+                }
+                h2 {
+                        font-weight: 700;
+                        font-size: 1.6em;
+                        margin-top: 30px;
+                }
+                p {
+                        line-height: 1.6em;
+                }
+                .container {
+                        max-width: 650px;
+                        margin: 20px auto 20px auto;
+                        padding-left: 15px;
+                        padding-right: 15px
+                }
+                .header {
+                        background-color: #42C0FD;
+                        color: #FFFFFF;
+                        padding: 10px 0 10px 0;
+                        font-size: 2.2em;
+                }
+                .notice {
+                        background-color: red;
+                        color: white;
+                        padding: 10px 0 10px 0;
+                        font-size: 1.25em;
+                        animation: flash 4s infinite;
+                }
+                @keyframes flash {
+                0% {
+                        background-color: red;
+                }
+                50% {
+                        background-color: #AA0000;
+                }
+                0% {
+                        background-color: red;
+                }
+                }
+                <!-- CSS from Mark Webster https://gist.github.com/markcwebster/9bdf30655cdd5279bad13993ac87c85d -->
+                </style>
+
+                <script>
+                        var adjectives = [ 'cool' , 'calm' , 'relaxed', 'soothing', 'serene', 'slow',
+                                                        'beautiful', 'wonderful', 'wonderous', 'fun', 'good',
+                                                        'glowing', 'inner', 'grand', 'majestic', 'astounding',
+                                                        'fine', 'splendid', 'transcendent', 'sublime', 'whole',
+                                                        'unique', 'old', 'young', 'fresh', 'clear', 'shiny',
+                                                        'shining', 'lush', 'quiet', 'bright', 'silver' ];
+
+                        var nouns =       [ 'day', 'dawn', 'peace', 'smile', 'love', 'zen', 'laugh',
+                                                        'yawn', 'poem', 'song', 'joke', 'verse', 'kiss', 'sunrise',
+                                                        'sunset', 'eclipse', 'moon', 'rainbow', 'rain', 'plan',
+                                                        'play', 'chart', 'birds', 'stars', 'pathway', 'secret',
+                                                        'treasure', 'melody', 'magic', 'spell', 'light', 'morning'];
+
+                        var prefix =
+                                        // Choose 3 zen adjectives
+                                        adjectives.sort(function(){return 0.5-Math.random()}).slice(-3).join('')
+                                        +
+                                        // Coupled with a zen noun
+                                        nouns.sort(function(){return 0.5-Math.random()}).slice(-1).join('');
+                        window.location.href = 'http://' + prefix + '.neverssl.com/online';
+                </script>
+        </head>
+        <body>
+        <noscript>
+                <div class="notice">
+                        <div class="container">
+                                ⚠️ JavaScript appears to be disabled. NeverSSL's cache-busting works better if you enable JavaScript for <code>neverssl.com</code>.
+                        </div>
+                </div>
+        </noscript>
+        <div class="header">
+                <div class="container">
+                <h1>NeverSSL</h1>
+                </div>
+        </div>
+        <div class="content">
+        <div class="container">
+
+        <h1 id="status"></h1>
+        <script>document.querySelector("#status").textContent = "Connecting ...";</script>
+        <noscript>
+
+                <h2>What?</h2>
+                <p>This website is for when you try to open Facebook, Google, Amazon, etc
+                on a wifi network, and nothing happens. Type "http://neverssl.com"
+                into your browser's url bar, and you'll be able to log on.</p>
+
+                <h2>How?</h2>
+                <p>neverssl.com will never use SSL (also known as TLS). No
+                encryption, no strong authentication, no <a
+                href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS</a>,
+                no HTTP/2.0, just plain old unencrypted HTTP and forever stuck in the dark
+                ages of internet security.</p>
+
+                <h2>Why?</h2>
+                <p>Normally, that's a bad idea. You should always use SSL and secure
+                encryption when possible. In fact, it's such a bad idea that most websites
+                are now using https by default.</p>
+
+                <p>And that's great, but it also means that if you're relying on
+                poorly-behaved wifi networks, it can be hard to get online.  Secure
+                browsers and websites using https make it impossible for those wifi
+                networks to send you to a login or payment page. Basically, those networks
+                can't tap into your connection just like attackers can't. Modern browsers
+                are so good that they can remember when a website supports encryption and
+                even if you type in the website name, they'll use https.</p>
+
+                <p>And if the network never redirects you to this page, well as you can
+                see, you're not missing much.</p>
+
+        <a href="https://twitter.com/neverssl">Follow @neverssl</a>
+
+        </noscript>
+
+        </div>
+        </div>
+
+        </body>
+</html>
+* Connection #0 to host neverssl.com left intact
 ```
 
 ---
@@ -63,7 +260,89 @@ dig ВАШ_ДОМЕН
 **Вивід:**
 
 ```
-(вставити повний вивід)
+
+Name                                     Type   TTL   Section    Str
+                                                                 ing
+                                                                 s
+----                                     ----   ---   -------    ---
+perl.org                                 HINFO  86400 Answer     {AA
+                                                                 AA
+                                                                 que
+                                                                 rie
+                                                                 s h
+                                                                 ave
+                                                                  be
+                                                                 en
+                                                                 loc
+                                                                 all
+                                                                 y b
+                                                                 loc
+                                                                 ked
+                                                                  by
+                                                                  dn
+                                                                 scr
+                                                                 ypt
+                                                                 -pr
+                                                                 oxy
+                                                                 , S
+                                                                 et
+                                                                 blo
+                                                                 ck_
+                                                                 ipv
+                                                                 6 t
+                                                                 o f
+                                                                 als
+                                                                 e t
+                                                                 o d
+                                                                 isa
+                                                                 ble
+                                                                  th
+                                                                 at
+                                                                 fea
+                                                                 tur
+                                                                 e}
+
+Name       : perl.org
+QueryType  : A
+TTL        : 3600
+Section    : Answer
+IP4Address : 151.101.193.55
+
+
+Name       : perl.org
+QueryType  : A
+TTL        : 3600
+Section    : Answer
+IP4Address : 151.101.1.55
+
+
+Name       : perl.org
+QueryType  : A
+TTL        : 3600
+Section    : Answer
+IP4Address : 151.101.129.55
+
+
+Name       : perl.org
+QueryType  : A
+TTL        : 3600
+Section    : Answer
+IP4Address : 151.101.65.55
+
+
+Name                   : org
+QueryType              : SOA
+TTL                    : 60
+Section                : Authority
+NameAdministrator      : h.invalid
+SerialNumber           : 1
+TimeToZoneRefresh      : 10000
+TimeToZoneFailureRetry : 300
+TimeToExpiration       : 604800
+DefaultTTL             : 2400
+
+
+
 ```
 
 **Команда (повторне виконання через 5–7 хвилин):**
@@ -75,7 +354,53 @@ dig ВАШ_ДОМЕН
 **Вивід:**
 
 ```
-(вставити повний вивід)
+
+Name                                     Type   TTL   Section    Strings
+----                                     ----   ---   -------    -------
+perl.org                                 HINFO  86400 Answer     {AAAA queries have been locally blocked b
+                                                                 y dnscrypt-proxy, Set block_ipv6 to false
+                                                                  to disable that feature}
+
+Name       : perl.org
+QueryType  : A
+TTL        : 3417
+Section    : Answer
+IP4Address : 151.101.65.55
+
+
+Name       : perl.org
+QueryType  : A
+TTL        : 3417
+Section    : Answer
+IP4Address : 151.101.129.55
+
+
+Name       : perl.org
+QueryType  : A
+TTL        : 3417
+Section    : Answer
+IP4Address : 151.101.193.55
+
+
+Name       : perl.org
+QueryType  : A
+TTL        : 3417
+Section    : Answer
+IP4Address : 151.101.1.55
+
+
+Name                   : org
+QueryType              : SOA
+TTL                    : 60
+Section                : Authority
+NameAdministrator      : h.invalid
+SerialNumber           : 1
+TimeToZoneRefresh      : 10000
+TimeToZoneFailureRetry : 300
+TimeToExpiration       : 604800
+DefaultTTL             : 2400
+
+
 ```
 
 **Зафіксовані значення:**
@@ -101,7 +426,41 @@ curl -v https://google.com
 **Вивід:**
 
 ```
-(вставити повний вивід)
+* Host google.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 173.194.193.139, 173.194.193.100, 173.194.193.113, 173.194.193.101, 173.194.193.138, 173.194.193.102
+*   Trying 173.194.193.139:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* ALPN: server accepted http/1.1
+* Connected to google.com (173.194.193.139) port 443
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: google.com
+> User-Agent: curl/8.13.0
+> Accept: */*
+>
+* Request completely sent off
+< HTTP/1.1 301 Moved Permanently
+< Location: https://www.google.com/
+< Content-Type: text/html; charset=UTF-8
+< Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-ut5S1Fu9-gvqui6X9yBpag' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+< Date: Mon, 21 Sep 2026 21:47:20 GMT
+< Expires: Wed, 21 Oct 2026 21:47:20 GMT
+< Cache-Control: public, max-age=2592000
+< Server: gws
+< Content-Length: 220
+< X-XSS-Protection: 0
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+<
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="https://www.google.com/">here</A>.
+</BODY></HTML>
+* Connection #0 to host google.com left intact
 ```
 
 ---
@@ -115,7 +474,15 @@ curl -v https://expired.badssl.com
 ```
 
 ```
-(вставити вивід)
+* Host expired.badssl.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 104.154.89.105
+*   Trying 104.154.89.105:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* schannel: next InitializeSecurityContext failed: SEC_E_CERT_EXPIRED (0x80090328) - The received certificate has expired.
+* closing connection #0
+curl: (35) schannel: next InitializeSecurityContext failed: SEC_E_CERT_EXPIRED (0x80090328) - The received certificate has expired.
 ```
 
 **Випадок 2**
@@ -125,7 +492,20 @@ curl -v https://wrong.host.badssl.com
 ```
 
 ```
-(вставити вивід)
+* Host wrong.host.badssl.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 104.154.89.105
+*   Trying 104.154.89.105:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* schannel: SNI or certificate check failed: SEC_E_WRONG_PRINCIPAL (0x80090322) - The target principal name is incorrect.
+* closing connection #0
+curl: (60) schannel: SNI or certificate check failed: SEC_E_WRONG_PRINCIPAL (0x80090322) - The target principal name is incorrect.
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the webpage mentioned above.
 ```
 
 **Випадок 3**
@@ -135,7 +515,20 @@ curl -v https://self-signed.badssl.com
 ```
 
 ```
-(вставити вивід)
+* Host self-signed.badssl.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 104.154.89.105
+*   Trying 104.154.89.105:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+* closing connection #0
+curl: (60) schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the webpage mentioned above.
 ```
 
 > Якщо використано альтернативний спосіб із параметром `--resolve` — зазначити це та навести фактичну команду.
